@@ -1,11 +1,13 @@
-import React from 'react'; 
+import React, {useState} from 'react'; 
 import axios from 'axios';
 
 export default function AuthForm() {    
-    const [authInfo, setAuthInfo]= ({
+    const [authInfo, setAuthInfo]= useState({
         fullName: '',
         email: '',
-        password: ''
+        password: '',
+        isAdmin: false,
+        adminKey: ''
     })
     const handleChange = e => {
         e.preventDefault();
@@ -15,7 +17,7 @@ export default function AuthForm() {
         e.preventDefault();  
           console.log('something');
         axios
-        .post(`url/${role}`, authInfo)
+        .post(`url`, authInfo)
         .then(response => {
             console.log('post response', response)
             localStorage.setItem('token', response.data.token)
@@ -45,7 +47,8 @@ export default function AuthForm() {
                     type= 'text'
                     value= {handleChange}
                     placeholder= 'Password'
-                />           
+                />        
+                <button type= 'submit'>Submit</button>   
             </form>
 
         </div>

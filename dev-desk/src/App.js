@@ -2,6 +2,7 @@ import React from 'react';
 import {Switch, Route} from 'react-router-dom';
 import './App.css';
 import PrivateRoute from './PrivateRoute';
+import AuthForm from './components/AuthForm';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <PrivateRoute exact path="/" component={() => "PrivateRoute here"}/>
         {/* Add more as needed */}
       </Switch>
+      <AuthForm />
     </div>
   );
 }
