@@ -1,11 +1,13 @@
-import React from 'react'; 
+import React, {useState} from 'react'; 
 import axios from 'axios';
 
 export default function AuthForm() {    
-    const [authInfo, setAuthInfo]= ({
+    const [authInfo, setAuthInfo]= useState({
         fullName: '',
         email: '',
-        password: ''
+        password: '',
+        isAdmin: false,
+        adminKey: ''
     })
     const handleChange = e => {
         e.preventDefault();
