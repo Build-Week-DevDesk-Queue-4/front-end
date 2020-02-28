@@ -1,3 +1,10 @@
 .App {
+  display: flex;
   text-align: center;
+  flex-direction: column;
+}
+input {
+  display: flex;
+  margin-left: 45%;
+
 }

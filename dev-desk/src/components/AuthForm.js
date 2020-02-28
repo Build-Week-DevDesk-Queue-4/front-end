@@ -17,7 +17,7 @@ export default function AuthForm(role, history) {
         e.preventDefault();  
           console.log('something');
         axios
-        .post(`url`, authInfo)
+        .post(`https://daniels-dev-desk-backend.herokuapp.com/api/auth/register/${role}`, authInfo)
         .then(response => {
             console.log('post response', response)
             localStorage.setItem('token', response.data.token)
@@ -27,27 +27,36 @@ export default function AuthForm(role, history) {
     
 
     return(
-        <div>
+        <div className= 'AuthForm'>
             <form onSubmit= {handleSubmit}>
                 <input
                     name= 'fullName'
                     type= 'text'
-                    value= {handleChange}
+                    onChange= {authInfo.fullName}
+                    value= {authInfo.fullName}
                     placeholder= 'First Name'
                 />
                
                 <input
                     name= 'email'
                     type= 'text'
-                    value= {handleChange}
+                    value= '' 
+                    onChange= {authInfo.email}
                     placeholder= 'Email'
                 />
                 <input
                     name= 'password'
                     type= 'text'
-                    value= {handleChange}
+                    onChange= {authInfo.password}
                     placeholder= 'Password'
-                />        
+                />    
+                <input
+                    name= 'AdminKey'
+                    type= 'text'
+                    onChange= {authInfo.AdminKey}
+                    placeholder= 'Admin Key'
+                /> 
+
                 <button type= 'submit'>Submit</button>   
             </form>
 
