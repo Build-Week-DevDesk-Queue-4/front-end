@@ -1,7 +1,7 @@
 import React, {useState} from 'react'; 
 import axios from 'axios';
 
-export default function AuthForm() {    
+export default function AuthForm(role, history) {    
     const [authInfo, setAuthInfo]= useState({
         fullName: '',
         email: '',
