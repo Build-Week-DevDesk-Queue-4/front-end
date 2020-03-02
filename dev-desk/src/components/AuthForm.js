@@ -22,7 +22,7 @@ export default function AuthForm({role, history}) {
             localStorage.setItem('token', response.data.token)
         })
         .catch(error => (error));
-        }
+    }
         
         
     return(
@@ -57,7 +57,7 @@ export default function AuthForm({role, history}) {
                     placeholder= 'type'
                     
                 />  
-                <Link to= '/'>Login</Link> 
+                <Link to= '/login'>Login</Link> 
                 </>
                 : null}
                 {role === 'login' ?
