@@ -56,7 +56,8 @@ export default function AuthForm({role, history}) {
                     value= {authInfo.type}
                     placeholder= 'type'
                     
-                />  
+                /> 
+                 
                 <Link to= '/'>Login</Link> 
                 </>
                 : null}
