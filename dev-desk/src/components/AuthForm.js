@@ -1,13 +1,12 @@
 import React, {useState} from 'react'; 
+import {Link} from 'react-router-dom';
 import axios from 'axios';
 
-export default function AuthForm() {    
+export default function AuthForm({role, history}) {    
     const [authInfo, setAuthInfo]= useState({
-        fullName: '',
-        email: '',
+        username: '',
         password: '',
-        isAdmin: false,
-        adminKey: ''
+        type: ''
     })
     const handleChange = e => {
         e.preventDefault();
@@ -17,37 +16,54 @@ export default function AuthForm() {
         e.preventDefault();  
           console.log('something');
         axios
-        .post(`url/${role}`, authInfo)
+        .post(`https://daniels-dev-desk-backend.herokuapp.com/api/auth/${role}`, authInfo)
         .then(response => {
             console.log('post response', response)
             localStorage.setItem('token', response.data.token)
         })
         .catch(error => (error));
         }
-    
-
+        
+        
     return(
-        <div>
+        
+        
+        <div className= 'AuthForm'>
             <form onSubmit= {handleSubmit}>
                 <input
-                    name= 'fullName'
+                    name= 'username'
                     type= 'text'
-                    value= {handleChange}
-                    placeholder= 'First Name'
+                    onChange= {handleChange}
+                    value= {authInfo.username}
+                    placeholder= 'username'
                 />
                
                 <input
-                    name= 'email'
-                    type= 'text'
-                    value= {handleChange}
-                    placeholder= 'Email'
-                />
-                <input
                     name= 'password'
+                    type= 'password'
+                    value= {authInfo.password} 
+                    onChange= {handleChange}
+                    placeholder= 'password'
+                />
+                
+                
+                {role === 'register' ? 
+                <>
+                <input
+                    name= 'type'
                     type= 'text'
-                    value= {handleChange}
-                    placeholder= 'Password'
-                />           
+                    onChange= {handleChange}
+                    value= {authInfo.type}
+                    placeholder= 'type'
+                    
+                />  
+                <Link to= '/'>Login</Link> 
+                </>
+                : null}
+                {role === 'login' ?
+                <Link to= '/register'>Click here to Register</Link>       
+                : null}
+                <button type= 'submit'>Submit</button>   
             </form>
 
         </div>
