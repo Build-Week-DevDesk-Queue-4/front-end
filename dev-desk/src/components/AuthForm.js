@@ -57,13 +57,18 @@ export default function AuthForm({role, history}) {
                     placeholder= 'type'
                     
                 />  
+                <div>
+                <button type= 'submit'>Submit</button>   
+                </div>
                 <Link to= '/'>Login</Link> 
                 </>
                 : null}
+                
                 {role === 'login' ?
                 <Link to= '/register'>Click here to Register</Link>       
                 : null}
-                <button type= 'submit'>Submit</button>   
+                
+                
             </form>
 
         </div>
