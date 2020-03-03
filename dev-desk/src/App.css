@@ -1,7 +1,8 @@
 .App {  
   text-align: center;
 }
-input {
+.AuthForm form {
   display: flex;
-  margin: 1% 0 0 40%;
-}
+  flex-direction: column;
+  width: 300px;
+  margin: auto;
