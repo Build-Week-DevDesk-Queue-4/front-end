@@ -1,8 +1,11 @@
-import React, {useState} from 'react'; 
+import React, {useState, useContext} from 'react'; 
 import {Link} from 'react-router-dom';
 import axios from 'axios';
+import UserContext from '../contexts/UserContext';
 
-export default function AuthForm({role, history}) {    
+export default function AuthForm({role, history}) {
+    const {setUser} = useContext(UserContext);
+
     const [authInfo, setAuthInfo]= useState({
         username: '',
         password: '',
@@ -15,13 +18,18 @@ export default function AuthForm({role, history}) {
     const handleLoginResponse = response => {
         console.log(response.data);
         localStorage.setItem('token', response.data.token);
+        setUser({
+            username: response.data.user.username,
+            type: response.data.user.type,
+        })
         history.push("/");
     }
+    // TODO: instead of console.log'ing the error, store state for the error and display to the user
     const login = () => {
         axios.post('https://daniels-dev-desk-backend.herokuapp.com/api/auth/login', authInfo)
             .then(handleLoginResponse)
             .catch(console.log);
-    };
+    }
     const registerAndLogin = () => {
         axios.post('https://daniels-dev-desk-backend.herokuapp.com/api/auth/register', authInfo)
             .then(() => axios.post('https://daniels-dev-desk-backend.herokuapp.com/api/auth/login', authInfo))
