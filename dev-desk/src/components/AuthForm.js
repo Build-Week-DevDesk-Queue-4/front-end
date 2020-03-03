@@ -11,14 +11,31 @@ export default function AuthForm({role, history}) {
     const handleChange = e => {
         setAuthInfo({...authInfo, [e.target.name]: e.target.value});
     }
+
+    const handleLoginResponse = response => {
+        console.log(response.data);
+        localStorage.setItem('token', response.data.token);
+        history.push("/");
+    }
+    const login = () => {
+        axios.post('https://daniels-dev-desk-backend.herokuapp.com/api/auth/login', authInfo)
+            .then(handleLoginResponse)
+            .catch(console.log);
+    };
+    const registerAndLogin = () => {
+        axios.post('https://daniels-dev-desk-backend.herokuapp.com/api/auth/register', authInfo)
+            .then(() => axios.post('https://daniels-dev-desk-backend.herokuapp.com/api/auth/login', authInfo))
+            .then(handleLoginResponse)
+            .catch(console.log);
+    }
+
     const handleSubmit = e => {
         e.preventDefault();  
-        axios.post(`https://daniels-dev-desk-backend.herokuapp.com/api/auth/${role}`, authInfo)
-            .then(response => {
-                localStorage.setItem('token', response.data.token);
-                history.push("/");
-            })
-            .catch(console.log);
+        if (role === 'login') {
+            login();
+        } else if (role === 'register') {
+            registerAndLogin();
+        }
     }
         
         
