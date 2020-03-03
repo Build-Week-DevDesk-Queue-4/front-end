@@ -15,12 +15,11 @@ export default function AuthForm({role, history}) {
         setAuthInfo({...authInfo, [e.target.name]: e.target.value});
     }
 
-    const handleLoginResponse = response => {
-        console.log(response.data);
-        localStorage.setItem('token', response.data.token);
+    const handleLoginResponse = ({data: {token, user}}) => {
+        localStorage.setItem('token', token);
         setUser({
-            username: response.data.user.username,
-            type: response.data.user.type,
+            username: user.username,
+            type: user.type,
         })
         history.push("/");
     }
@@ -45,8 +44,7 @@ export default function AuthForm({role, history}) {
             registerAndLogin();
         }
     }
-        
-        
+
     return(
         <div className= 'AuthForm'>
             {role === 'login' && <Link to= '/register'>Registration Page</Link>}
