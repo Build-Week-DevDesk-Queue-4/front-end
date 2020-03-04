@@ -90,7 +90,6 @@ export default function AuthForm({role, history}) {
                     onChange= {handleChange}
                     placeholder= 'password'
                 />
-<<<<<<< HEAD
                 
                 
                 {role === 'register' ? 
@@ -117,9 +116,7 @@ export default function AuthForm({role, history}) {
                 <Link to= '/register'>Click here to Register</Link>       
                 : null}
                 
-=======
                 <button type= 'submit'>Submit</button>
->>>>>>> bb1f1f56b020c8963d2e13c36973c33d762fe23f
             </form>
         </div>
     )

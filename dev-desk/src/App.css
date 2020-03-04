@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 .App {
   display: flex;
   text-align: center;
@@ -15,7 +14,6 @@ input {
   
 
 }
-=======
 .App {  
   text-align: center;
 }
@@ -24,4 +22,4 @@ input {
   flex-direction: column;
   width: 300px;
   margin: auto;
->>>>>>> bb1f1f56b020c8963d2e13c36973c33d762fe23f
+}
