@@ -90,7 +90,7 @@ export default function AuthForm({role, history}) {
                     onChange= {handleChange}
                     placeholder= 'password'
                 />
-                <button type= 'submit'>Submit</button>   
+                <button type= 'submit'>Submit</button>
             </form>
         </div>
     )
