@@ -10,6 +10,7 @@ import FrontPage from './components/FrontPage';
 function App() {
   const [user, setUser] = useLocalStorage("user", {
     username: "",
+    id: 0,
     type: "",
   });
 

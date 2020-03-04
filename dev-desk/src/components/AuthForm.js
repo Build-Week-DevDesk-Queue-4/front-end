@@ -16,9 +16,11 @@ export default function AuthForm({role, history}) {
     }
 
     const handleLoginResponse = ({data: {token, user}}) => {
+        console.log(user);
         localStorage.setItem('token', token);
         setUser({
             username: user.username,
+            id: user.id,
             type: user.type,
         })
         history.push("/");

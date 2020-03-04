@@ -5,7 +5,7 @@ const Ticket = (props) => {
     const [ticket, setTicket] = useState();
 
     useEffect(() => {
-        const id = props.match.params.id
+        const id = props.match.params.id;
 
         axios
         .get('https://daniels-dev-desk-backend.herokuapp.com/')

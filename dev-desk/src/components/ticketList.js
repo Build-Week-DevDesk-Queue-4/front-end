@@ -1,40 +1,39 @@
 import React, {useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import axiosWithAuth from '../axiosWithAuth';
 
-const TicketList = props => {
-    const [tickets, setTickets] = useState([])
+const TicketList = ({filter}) => {
+    const [tickets, setTickets] = useState([]);
+
+    if (filter === undefined) {
+        filter = () => true;
+    }
+
     useEffect(() => {
-        const getTickets = () => {
-            axios
-            .get('https://daniels-dev-desk-backend.herokuapp.com/')
+        axiosWithAuth().get('https://daniels-dev-desk-backend.herokuapp.com/api/tickets')
             .then(response => {
-                console.log(response.data);
-                setTickets(response.data);
+                setTickets(response.data.tickets);
             })
             .catch(error => {
                 console.error('Server Error', error);
             });
-        }
+    }, []);
 
-        getTickets();
-}, []);
-
-return (
-    <div className="ticket-list">
-        {tickets.map(ticket => (
-
-            <TicketListItem key={ticket.id} ticket={ticket} />
-        ))}
-    </div>
-);
- }
+    return (
+        <div className="ticket-list">
+            {tickets.filter(filter).map(ticket => (
+                <TicketListItem key={ticket.id} ticket={ticket} />
+            ))}
+        </div>
+    );
+}
 
 function TicketListItem({ ticket }) {
     const { user_id, description, urgency, reply, solved, category, solved_by } =ticket;
     return (
-        <Link to={'tickets/${ticket.id}'}>
-            <div className="ticketCard">
+        <Link to={`tickets/${ticket.id}`}>
+            <div style={{border: "1px solid black"}} className="ticketCard">
                 <p>Submitted by: {user_id}</p>
                 <p>Description: {description}</p>
                 <p>Urgency: {urgency}</p>
