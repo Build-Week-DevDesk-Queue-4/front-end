@@ -16,17 +16,6 @@ function App() {
 
   return (
     <div className="App">
-{/*<<<<<<< HEAD */}
-      <Switch>
-        {/* Set the /register path to display the registration component */}
-        <Route exact path="/register" render={props => <AuthForm {...props} role= 'register' /> }/>
-        <Route exact path="/" render={props => <AuthForm {...props} role= 'login' /> }/>
-        {/* Set the private route to handle the main application*/}
-        {/* <PrivateRoute exact path="/" component={() => "PrivateRoute here"}/> */}
-        {/* Add more as needed */}
-      </Switch>
-      
-=======
       <UserContext.Provider value={{user, setUser}}>
         <Switch>
           {/* Set the /register path to display the registration component */}
@@ -37,7 +26,6 @@ function App() {
           {/* Add more as needed */}
         </Switch>
       </UserContext.Provider>
-{/* >>>>>>> bb1f1f56b020c8963d2e13c36973c33d762fe23f */}
     </div>
   );
 }
