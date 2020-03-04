@@ -9,7 +9,7 @@ export default ({component: Component, ...rest}) => (
             ?
             <Component {...props}/>
             :
-            <Redirect to="/register"/>
+            <Redirect to="/login"/>
         )}
     />
 )
