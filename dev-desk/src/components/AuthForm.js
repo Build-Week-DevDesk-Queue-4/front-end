@@ -15,12 +15,13 @@ export default function AuthForm({role, history}) {
         setAuthInfo({...authInfo, [e.target.name]: e.target.value});
     }
 
-    const handleLoginResponse = response => {
-        console.log(response.data);
-        localStorage.setItem('token', response.data.token);
+    const handleLoginResponse = ({data: {token, user}}) => {
+        console.log(user);
+        localStorage.setItem('token', token);
         setUser({
-            username: response.data.user.username,
-            type: response.data.user.type,
+            username: user.username,
+            id: user.id,
+            type: user.type,
         })
         history.push("/");
     }
@@ -45,8 +46,7 @@ export default function AuthForm({role, history}) {
             registerAndLogin();
         }
     }
-        
-        
+
     return(
         <div className= 'AuthForm'>
             {role === 'login' && <Link to= '/register'>Registration Page</Link>}
@@ -90,32 +90,7 @@ export default function AuthForm({role, history}) {
                     onChange= {handleChange}
                     placeholder= 'password'
                 />
-                
-                
-                {role === 'register' ? 
-                <>
-                <input
-                    name= 'type'
-                    type= 'text'
-                    onChange= {handleChange}
-                    value= {authInfo.type}
-                    placeholder= 'type'
-                    
-                /> 
-                {/* <div>
-                <button type= 'submit'>Submit</button>   
-                </div> */}
-                
-                <Link to= '/'>Login</Link> 
-                </>
-                : null}
-                <div>
-                <button type= 'submit'>Submit</button>
-                </div>
-                {role === 'login' ?
-                <Link to= '/register'>Click here to Register</Link>       
-                : null}
-                
+
                 <button type= 'submit'>Submit</button>
             </form>
         </div>
