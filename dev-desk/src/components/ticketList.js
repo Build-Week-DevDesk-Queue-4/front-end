@@ -7,8 +7,9 @@ const TicketList = props => {
     useEffect(() => {
         const getTickets = () => {
             axios
-            .get('')
+            .get('https://daniels-dev-desk-backend.herokuapp.com/')
             .then(response => {
+                console.log(response.data);
                 setTickets(response.data);
             })
             .catch(error => {

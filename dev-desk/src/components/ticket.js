@@ -8,8 +8,9 @@ const Ticket = (props) => {
         const id = props.match.params.id
 
         axios
-        .get('')
+        .get('https://daniels-dev-desk-backend.herokuapp.com/')
         .then(response => {
+            console.log(response.data);
             setTicket(response.data);
         })
         .catch(error => {
