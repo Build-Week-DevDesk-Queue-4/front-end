@@ -42,7 +42,9 @@ function TicketListItem({ ticket }) {
                 <p>Category: {category}</p>
                 <p>Solved by: {solved_by}</p>
             </div>
+          
         </Link>
+        
     )
 }
 

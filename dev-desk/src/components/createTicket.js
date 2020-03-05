@@ -1,8 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
+import axiosWithAuth from 'axios';
 
-export default createTicket() {
-    const [createTicket, setCreateTicket] = useState({
-        user_id: ,
+
+ const CreateTicket = () => {
+    const [creatingTicket, setCreatingTicket] = useState({
+        user_id: '',
         description: "",
         urgency: "",
         reply: "",
@@ -10,9 +12,17 @@ export default createTicket() {
         category: "",
         solved_by: "",
         username: ""
-    });
-
-}
+    })
+    const handleSubmit = e => {
+    axiosWithAuth()
+    .post('https://daniels-dev-desk-backend.herokuapp.com/api/tickets', creatingTicket)
+    .then(response => {
+        console.log('response', response);
+      
+      
+})
+    
+    
 return(
     <div>
         <form onSubmit = {handleSubmit}>
@@ -67,3 +77,7 @@ return(
             <button type= 'submit'>Submit</button>
         </form>
     </div>
+    )
+  }
+}
+export default CreateTicket;
