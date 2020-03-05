@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import UserContext from '../contexts/UserContext';
-import TicketList from './TicketList_temp_rename';
+import TicketList from './TicketList';
 
 export default props => {
     const [ticketChoice, setTicketChoice] = useState("all");
