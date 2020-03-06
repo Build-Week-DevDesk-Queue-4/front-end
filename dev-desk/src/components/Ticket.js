@@ -6,7 +6,7 @@ import ResolveTicket from './ResolveTicket';
 
 function Ticket({ ticket }) {
     const {user} = useContext(UserContext);
-    const { user_id, description, urgency, reply, solved, category, solved_by } =ticket;
+    const { username, description, urgency, reply, solved, category, solved_by } =ticket;
     const [editing, setEditing] = useState(false);
 
     return (
@@ -16,13 +16,15 @@ function Ticket({ ticket }) {
                     setEditing(true);
                 }
             }}>
-                <p>Submitted by: {user_id}</p>
+                <p>Submitted by: {username}</p>
+                <p>Category: {category}</p>
                 <p>Description: {description}</p>
                 <p>Urgency: {urgency}</p>
-                <p>Reply: {reply}</p>
-                <p>Resolved: {solved}</p>
-                <p>Category: {category}</p>
-                <p>Solved by: {solved_by}</p>
+                {solved === true && <>
+                    <p>Solution:</p>
+                    <p>Reply: {reply}</p>
+                    <p>Solved by: {solved_by}</p>
+                </>}
             </div>
             {editing && <ResolveTicket ticket={ticket} setEditing={setEditing}/>}
         </div>

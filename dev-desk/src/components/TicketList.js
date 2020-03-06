@@ -12,6 +12,7 @@ const TicketList = ({filter}) => {
     useEffect(() => {
         axiosWithAuth().get('https://daniels-dev-desk-backend.herokuapp.com/api/tickets')
             .then(response => {
+                console.log(response);
                 setTickets(response.data.tickets);
             })
             .catch(error => {
