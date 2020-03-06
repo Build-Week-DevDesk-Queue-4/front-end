@@ -18,6 +18,7 @@ import axiosWithAuth from 'axios';
     .post('https://daniels-dev-desk-backend.herokuapp.com/api/tickets', creatingTicket)
     .then(response => {
         console.log('response', response);
+        history.push('/ResolveTicket')
       
       
 })
