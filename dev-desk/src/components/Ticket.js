@@ -1,13 +1,20 @@
 import React, { useState, useContext } from 'react';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
 import UserContext from '../contexts/UserContext';
 import ResolveTicket from './ResolveTicket';
+import axiosWithAuth from '../axiosWithAuth';
 
 function Ticket({ ticket }) {
     const {user} = useContext(UserContext);
     const { username, description, urgency, reply, solved, category, solved_by } =ticket;
     const [editing, setEditing] = useState(false);
+
+    const deleteTicket = e => {
+        e.preventDefault();
+        e.stopPropagation();
+        axiosWithAuth().delete('https://daniels-dev-desk-backend.herokuapp.com/api/tickets/id')
+            .then()
+            .catch(err => console.log(err.response));
+    }
 
     return (
         <div>
@@ -29,6 +36,7 @@ function Ticket({ ticket }) {
                     <p>{reply}</p>
                     <p>- By {solved_by}</p>
                 </>}
+                {user.id === ticket.user_id && <button onClick={deleteTicket}>Delete</button>}
             </div>
             {editing && <ResolveTicket ticket={ticket} setEditing={setEditing}/>}
         </div>
