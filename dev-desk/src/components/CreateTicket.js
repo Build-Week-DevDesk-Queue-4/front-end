@@ -1,22 +1,24 @@
 import React, {useState, useContext} from 'react';
-import axiosWithAuth from 'axios';
+import axiosWithAuth from '../axiosWithAuth';
 import UserContext from '../contexts/UserContext';
 
 const CreateTicket = () => {
     const {user} = useContext(UserContext);
 
-    const [creatingTicket, setCreatingTicket] = useState({
+    const defaultTicket = {
         user_id: user.id,
         username: user.username,
-        
+
         category: "",
         description: "",
         urgency: "",
 
         reply: "",
         solved: false,
-        solved_by: "",
-    });
+        solved_by: "Lambda",
+    };
+
+    const [creatingTicket, setCreatingTicket] = useState(defaultTicket);
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -24,7 +26,7 @@ const CreateTicket = () => {
             .post('https://daniels-dev-desk-backend.herokuapp.com/api/tickets', creatingTicket)
             .then(response => {
                 console.log('response', response);        
-            })
+            }).catch(err => console.log(err.response));
     };
 
     const handleChange = e => {

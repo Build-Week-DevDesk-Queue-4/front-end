@@ -6,7 +6,6 @@ import AuthForm from './components/AuthForm';
 import UserContext from './contexts/UserContext';
 import useLocalStorage from './hooks/useLocalStorage';
 import FrontPage from './components/FrontPage';
-import createTicket from './components/createTicket';
 
 function App() {
   const [user, setUser] = useLocalStorage("user", {
