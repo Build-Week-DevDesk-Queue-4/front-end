@@ -6,6 +6,7 @@ import AuthForm from './components/AuthForm';
 import UserContext from './contexts/UserContext';
 import useLocalStorage from './hooks/useLocalStorage';
 import FrontPage from './components/FrontPage';
+import createTicket from './components/createTicket';
 
 function App() {
   const [user, setUser] = useLocalStorage("user", {
@@ -18,7 +19,7 @@ function App() {
     <div className="App">
       <UserContext.Provider value={{user, setUser}}>
         <Switch>
-          {/* Set the /register path to display the registration component */}
+          {/* Set the /register path to display the registration component */}          
           <Route exact path="/register" render={props => <AuthForm {...props} role= 'register' /> }/>
           <Route exact path="/login" render={props => <AuthForm {...props} role= 'login' /> }/>
           {/* Set the private route to handle the main application*/}
