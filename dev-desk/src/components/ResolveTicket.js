@@ -1,9 +1,10 @@
 import React, { useContext, useState } from 'react';
-import UserContext from '../contexts/UserContext';
+import TicketContext from '../contexts/TicketContext';
 import axiosWithAuth from '../axiosWithAuth';
 
 export default ({ticket, setEditing}) => {
-    const {user} = useContext(UserContext);
+    //const {user} = useContext(UserContext);
+    const {setTickets} = useContext(TicketContext);
     const [reply, setReply] = useState("");
 
     const handleSubmit = ev => {
@@ -19,8 +20,7 @@ export default ({ticket, setEditing}) => {
                 // For some reason this errors the API PUT request so I'll exclude it
                 // solved_by: user.username,
                 solved: true,
-            }).then(console.log)
-                .catch(console.error);
+            }).then(setTickets).catch(console.error);
         }
     }
 

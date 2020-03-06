@@ -2,9 +2,11 @@ import React, { useState, useContext } from 'react';
 import UserContext from '../contexts/UserContext';
 import ResolveTicket from './ResolveTicket';
 import axiosWithAuth from '../axiosWithAuth';
+import TicketContext from '../contexts/TicketContext';
 
 function Ticket({ ticket }) {
     const {user} = useContext(UserContext);
+    const {setTickets} = useContext(TicketContext);
     const { username, description, urgency, reply, solved, category, solved_by } =ticket;
     const [editing, setEditing] = useState(false);
 
@@ -29,7 +31,7 @@ function Ticket({ ticket }) {
         }
         console.log("deleting!");
         axiosWithAuth().delete(`https://daniels-dev-desk-backend.herokuapp.com/api/tickets/${ticket.id}`)
-            .then()
+            .then(setTickets)
             .catch(err => console.log(err.response));
     }
 

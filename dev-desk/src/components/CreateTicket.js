@@ -1,9 +1,11 @@
 import React, {useState, useContext} from 'react';
 import axiosWithAuth from '../axiosWithAuth';
 import UserContext from '../contexts/UserContext';
+import TicketContext from '../contexts/TicketContext';
 
 const CreateTicket = () => {
     const {user} = useContext(UserContext);
+    const {setTickets} = useContext(TicketContext);
 
     const defaultTicket = {
         user_id: user.id,
@@ -24,9 +26,7 @@ const CreateTicket = () => {
         e.preventDefault();
         axiosWithAuth()
             .post('https://daniels-dev-desk-backend.herokuapp.com/api/tickets', creatingTicket)
-            .then(response => {
-                console.log('response', response);        
-            }).catch(err => console.log(err.response));
+            .then(setTickets).catch(err => console.log(err.response));
     };
 
     const handleChange = e => {
