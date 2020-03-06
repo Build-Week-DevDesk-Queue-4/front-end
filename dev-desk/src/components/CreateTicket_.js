@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import axiosWithAuth from 'axios';
 
-
 const CreateTicket = () => {
     const [creatingTicket, setCreatingTicket] = useState({
         user_id: '',
