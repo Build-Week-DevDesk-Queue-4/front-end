@@ -8,25 +8,30 @@ function Ticket({ ticket }) {
     const { username, description, urgency, reply, solved, category, solved_by } =ticket;
     const [editing, setEditing] = useState(false);
 
+    const canClick = user.type === "admin";
+
+    const getClasses = () => {
+        let cls = "ticketCard";
+        if (!solved) {
+            cls += " open";
+        }
+        if (canClick) {
+            cls += " clickable";
+        }
+        return cls
+    }
+
     const deleteTicket = e => {
         e.preventDefault();
         e.stopPropagation();
-        axiosWithAuth().delete('https://daniels-dev-desk-backend.herokuapp.com/api/tickets/id')
+        axiosWithAuth().delete(`https://daniels-dev-desk-backend.herokuapp.com/api/tickets/${ticket.id}`)
             .then()
             .catch(err => console.log(err.response));
     }
 
     return (
         <div>
-            <div
-                style={{border: "1px solid black"}}
-                className={solved === false ? "ticketCard open" : "ticketCard"}
-                onClick={() => {
-                    if (user.type === 'admin') {
-                        setEditing(true);
-                    }
-                }}
-            >
+            <div className={getClasses()} onClick={() => setEditing(canClick)}>
                 <p>Submitted by: {username}</p>
                 <p>Category: {category}</p>
                 <p>Description: {description}</p>
