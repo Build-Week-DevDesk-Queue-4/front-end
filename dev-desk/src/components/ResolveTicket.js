@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import UserContext from '../contexts/UserContext';
+import axiosWithAuth from '../axiosWithAuth';
 
 export default ({ticket, setEditing}) => {
     const {user} = useContext(UserContext);
@@ -12,12 +13,14 @@ export default ({ticket, setEditing}) => {
             return;
         } else {
             setEditing(false);
-            console.log("I'm supposed to make an API PUT request here with this new data:", {
+            axiosWithAuth().put(`https://daniels-dev-desk-backend.herokuapp.com/api/tickets/${ticket.id}`, {
                 ...ticket,
                 reply,
-                solved_by: user.id,
+                // For some reason this errors the API PUT request so I'll exclude it
+                // solved_by: user.username,
                 solved: true,
-            });
+            }).then(console.log)
+                .catch(console.error);
         }
     }
 

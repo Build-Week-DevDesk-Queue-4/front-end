@@ -11,19 +11,23 @@ function Ticket({ ticket }) {
 
     return (
         <div>
-            <div style={{border: "1px solid black"}} className="ticketCard" onClick={() => {
-                if (user.type === 'admin') {
-                    setEditing(true);
-                }
-            }}>
+            <div
+                style={{border: "1px solid black"}}
+                className={solved === false ? "ticketCard open" : "ticketCard"}
+                onClick={() => {
+                    if (user.type === 'admin') {
+                        setEditing(true);
+                    }
+                }}
+            >
                 <p>Submitted by: {username}</p>
                 <p>Category: {category}</p>
                 <p>Description: {description}</p>
                 <p>Urgency: {urgency}</p>
                 {solved === true && <>
                     <p>Solution:</p>
-                    <p>Reply: {reply}</p>
-                    <p>Solved by: {solved_by}</p>
+                    <p>{reply}</p>
+                    <p>- By {solved_by}</p>
                 </>}
             </div>
             {editing && <ResolveTicket ticket={ticket} setEditing={setEditing}/>}
