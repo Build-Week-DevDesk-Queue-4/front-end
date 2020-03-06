@@ -11,7 +11,7 @@ function Ticket({ ticket }) {
     const canClick = user.type === "admin";
 
     const getClasses = () => {
-        let cls = "ticketCard";
+        let cls = "ticket";
         if (!solved) {
             cls += " open";
         }
@@ -24,6 +24,10 @@ function Ticket({ ticket }) {
     const deleteTicket = e => {
         e.preventDefault();
         e.stopPropagation();
+        if (user.type !== "admin" && user.id !== ticket.user_id) {
+            return;
+        }
+        console.log("deleting!");
         axiosWithAuth().delete(`https://daniels-dev-desk-backend.herokuapp.com/api/tickets/${ticket.id}`)
             .then()
             .catch(err => console.log(err.response));
@@ -32,16 +36,23 @@ function Ticket({ ticket }) {
     return (
         <div>
             <div className={getClasses()} onClick={() => setEditing(canClick)}>
-                <p>Submitted by: {username}</p>
-                <p>Category: {category}</p>
-                <p>Description: {description}</p>
-                <p>Urgency: {urgency}</p>
-                {solved === true && <>
+                <p className='top'>
+                    <span>
+                        <span className='username'>{username}</span>
+                        {(user.id === ticket.user_id || user.type === 'admin') &&
+                            <button onClick={deleteTicket} className='delete'>Delete</button>
+                        }
+                    </span>
+                    {!solved && <span className={`urgency-${urgency}`}>urgency: {urgency}</span>}
+                </p>
+                <h2>{category}</h2>
+                <p>{description}</p>
+                {solved === true &&
+                <div className='solution'>
                     <p>Solution:</p>
                     <p>{reply}</p>
                     <p>- By {solved_by}</p>
-                </>}
-                {user.id === ticket.user_id && <button onClick={deleteTicket}>Delete</button>}
+                </div>}
             </div>
             {editing && <ResolveTicket ticket={ticket} setEditing={setEditing}/>}
         </div>
