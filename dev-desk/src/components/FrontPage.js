@@ -6,6 +6,20 @@ import CreateTicket from './CreateTicket';
 import useLocalStorage from '../hooks/useLocalStorage';
 import axiosWithAuth from '../axiosWithAuth';
 
+const getSortRank = ticket => {
+    if (!ticket.solved) {
+        switch (ticket.urgency) {
+            case "low":
+                return 1;
+            case "medium":
+                return 2;
+            case "high":
+                return 3;
+        }
+    }
+    return 0;
+}
+
 export default props => {
     const [tickets, setTickets] = useState([]);
     const [fetching, setFetching] = useState(false);
@@ -14,7 +28,7 @@ export default props => {
         setFetching(true);
         axiosWithAuth().get('https://daniels-dev-desk-backend.herokuapp.com/api/tickets')
             .then(response => {
-                setTickets(response.data.tickets);
+                setTickets(response.data.tickets.sort((a,b) => getSortRank(b) - getSortRank(a)));
                 setFetching(false);
             })
             .catch(error => {

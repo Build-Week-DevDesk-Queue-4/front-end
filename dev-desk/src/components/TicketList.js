@@ -10,20 +10,6 @@ const TicketList = ({filter}) => {
         filter = () => true;
     }
 
-    const getSortRank = ticket => {
-        if (!ticket.solved) {
-            switch (ticket.urgency) {
-                case "low":
-                    return 1;
-                case "medium":
-                    return 2;
-                case "high":
-                    return 3;
-            }
-        }
-        return 0;
-    }
-
     return (
         <div className="ticket-list">
             {fetching && 
@@ -32,7 +18,6 @@ const TicketList = ({filter}) => {
             {error && !fetching && <p>Server Error</p>}
             {tickets
                 .filter(filter)
-                .sort((a, b) => getSortRank(b) - getSortRank(a))
                 .map(ticket => <Ticket key={ticket.id} ticket={ticket} />)
             }
         </div>
