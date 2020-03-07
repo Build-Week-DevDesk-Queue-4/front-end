@@ -51,9 +51,8 @@ function Ticket({ ticket }) {
                 <p>{description}</p>
                 {solved === true &&
                 <div className='solution'>
-                    <p>Solution:</p>
-                    <p>{reply}</p>
-                    <p>- By {solved_by}</p>
+                    <p>Solution: {reply}</p>
+                    <p>solved by: {solved_by}</p>
                 </div>}
             </div>
             {editing && <ResolveTicket ticket={ticket} setEditing={setEditing}/>}

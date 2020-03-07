@@ -11,11 +11,9 @@ export default props => {
     const [fetching, setFetching] = useState(false);
     const [error, setError] = useState(false);
     const fetchTickets = () => {
-        console.log("fetching");
         setFetching(true);
         axiosWithAuth().get('https://daniels-dev-desk-backend.herokuapp.com/api/tickets')
             .then(response => {
-                console.log(response);
                 setTickets(response.data.tickets);
                 setFetching(false);
             })

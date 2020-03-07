@@ -13,7 +13,7 @@ const CreateTicket = () => {
 
         category: "",
         description: "",
-        urgency: "",
+        urgency: "low",
 
         reply: "",
         solved: false,
