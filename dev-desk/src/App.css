@@ -53,9 +53,9 @@
   color: #2E62A9;
   text-decoration: none;
 }
-.front-page {
+/* .front-page {
 
-}
+} */
 .ticket {
   text-align: left;
   width: 60%;
@@ -97,4 +97,46 @@
 
 .delete {
   margin-left: 20px;
+}
+
+/*create ticket*/
+.main-div form {
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+  margin: 20px auto 0;
+  text-align: left;
+}
+.main-div {
+  align-self: flex-start;
+}
+.main-div input, .main-div button {
+  width: 100%;
+  height: 50px;
+}
+.main-div input {
+  padding: 10px;
+  margin: 10px 0 20px;
+  border-color: black;
+  border-width: 1px;
+}
+.main-div button {
+  display: block;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  background: #2E62A9;
+  border: none;
+  margin: 10px 0;
+  cursor: pointer;
+}
+.main-div {
+  text-align: left;
+  width: 60%;
+  min-width: 375px;
+  padding: 20px;
+  margin: auto;
+  background: #FEF6F6;
+  border: 1px solid #DADADA;
+  border-radius: 8px;
 }
