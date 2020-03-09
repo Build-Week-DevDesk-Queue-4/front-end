@@ -43,7 +43,7 @@ export default () => {
     useEffect(fetchTickets, []);
 
     return (
-        <div class='front-page'>
+        <div className='front-page'>
             <TicketContext.Provider value={{
                 tickets, setTickets: fetchTickets, fetching, setFetching, error, setError
             }}>
