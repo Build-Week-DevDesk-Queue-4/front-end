@@ -2,6 +2,7 @@ import React, {useState, useContext} from 'react';
 import axiosWithAuth from '../axiosWithAuth';
 import UserContext from '../contexts/UserContext';
 import TicketContext from '../contexts/TicketContext';
+import './CreateTicket.css'
 
 const CreateTicket = () => {
     const {user} = useContext(UserContext);
@@ -37,7 +38,7 @@ const CreateTicket = () => {
     };
     
     return (
-        <div>
+        <div className= 'main-div'>
             <form onSubmit = {handleSubmit}>
                 <label>
                     Category:
