@@ -1,0 +1,25 @@
+.resolve-ticket {
+    display: flex;
+    flex-direction: column;
+}
+.resolve-ticket textarea {
+    border-radius: 8px;
+    padding: 8px;
+}
+.resolve-ticket .buttons {
+    display: flex;
+    align-self: flex-end;
+    flex-direction: row;
+    justify-content: right;
+}
+.resolve-ticket .buttons button {
+    padding: 10px 45px;
+    margin-left: 15px;
+    color: white;
+}
+.resolve-ticket button.submit {
+    background: #2E62A9;
+}
+.resolve-ticket button.cancel {
+    background: #696363;
+}

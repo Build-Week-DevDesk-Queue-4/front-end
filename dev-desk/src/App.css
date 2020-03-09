@@ -53,12 +53,9 @@
   color: #2E62A9;
   text-decoration: none;
 }
-/* .front-page {
 
-} */
 .ticket {
   text-align: left;
-  width: 60%;
   min-width: 375px;
   padding: 20px;
   margin: auto;
