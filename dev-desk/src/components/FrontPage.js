@@ -5,6 +5,7 @@ import TicketList from './TicketList';
 import CreateTicket from './CreateTicket';
 import useLocalStorage from '../hooks/useLocalStorage';
 import axiosWithAuth from '../axiosWithAuth';
+import './frontPage.css';
 
 const getSortRank = ticket => {
     if (!ticket.solved) {
@@ -43,14 +44,22 @@ export default () => {
     useEffect(fetchTickets, []);
 
     return (
-        <div class='front-page'>
+        <div className='front-page'>
             <TicketContext.Provider value={{
                 tickets, setTickets: fetchTickets, fetching, setFetching, error, setError
             }}>
                 {/* {user.username} is a {user.type} */}
                 <CreateTicket/>
-                <button onClick={() => setTicketChoice("all")}>All Tickets</button>
-                <button onClick={() => setTicketChoice("my")}>My Tickets</button>
+                <div className="buttons">
+                    <button
+                        onClick={() => setTicketChoice("all")}
+                        className={ticketChoice === "all" ? "selected" : null}
+                    >All Tickets</button>
+                    <button
+                        onClick={() => setTicketChoice("my")}
+                        className={ticketChoice === "my" ? "selected" : null}
+                    >My Tickets</button>
+                </div>
                 {ticketChoice === "all" && <TicketList tickets={tickets}/>}
                 {ticketChoice === "my" &&
                     <TicketList tickets={tickets} filter={(ticket) => ticket.user_id === user.id}/>

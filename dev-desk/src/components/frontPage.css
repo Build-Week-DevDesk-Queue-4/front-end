@@ -1,0 +1,25 @@
+.front-page {
+  width: 60%;
+  margin: 0 auto;
+}
+.buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.buttons button {
+    border: none;
+    color: #2E62A9;
+    background: none;
+    cursor: pointer;
+    margin: 20px 0;
+}
+.buttons button.selected {
+    text-decoration: underline;
+}
+.buttons button:focus {
+    outline: none;
+}
+.ticket {
+    margin: 15px 0;
+}
