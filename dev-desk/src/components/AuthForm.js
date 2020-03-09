@@ -2,6 +2,8 @@ import React, {useState, useContext} from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 import UserContext from '../contexts/UserContext';
+import lambda from '../image/lambda.svg';
+import authImage from '../image/authImage.svg';
 
 export default function AuthForm({role, history}) {
     const {setUser} = useContext(UserContext);
@@ -49,49 +51,69 @@ export default function AuthForm({role, history}) {
 
     return(
         <div className= 'AuthForm'>
-            {role === 'login' && <Link to= '/register'>Registration Page</Link>}
-            {role === 'register' && <Link to='/login'>Login Page</Link>}
             <form onSubmit= {handleSubmit}>
-                {/* This div specifically for the radio buttons */}
-                {role === 'register' && <div className="user-type-radio">
-                    <input
-                        type='radio'
-                        name='type'
-                        id='user'
-                        value='user'
-                        checked={authInfo.type === 'user'}
-                        onChange={handleChange}
-                    />
-                    <label htmlFor='user'>User</label>
-
-                    <input
-                        type='radio'
-                        name='type'
-                        id='admin'
-                        value='admin'
-                        checked={authInfo.type === 'admin'}
-                        onChange={handleChange}
-                    />
-                    <label htmlFor='admin'>Helper</label>
-                </div>}
-
+                <img src={lambda} alt="Lambda School Logo" className='lambda-logo'/>
+                <img src={authImage} alt="Person at computer"/>
+                
+                <label>Full Name</label>
                 <input
+                    className='text-input'
                     name= 'username'
                     type= 'text'
                     onChange= {handleChange}
                     value= {authInfo.username}
-                    placeholder= 'username'
                 />
-               
+
+                <label>Password</label>
                 <input
+                    className='text-input'
                     name= 'password'
                     type= 'password'
                     value= {authInfo.password} 
                     onChange= {handleChange}
-                    placeholder= 'password'
                 />
 
-                <button type= 'submit'>Submit</button>
+                {/* This div specifically for the radio buttons */}
+                {role === 'register' && <div className="user-type-radio">
+                    <div>
+                        <input
+                            type='radio'
+                            name='type'
+                            id='user'
+                            value='user'
+                            checked={authInfo.type === 'user'}
+                            onChange={handleChange}
+                        />
+                        <label 
+                            className={authInfo.type === 'user' ? "selected" : null}
+                            htmlFor='user'
+                        >User</label>
+                    </div>
+                    <div>
+                        <input
+                            type='radio'
+                            name='type'
+                            id='admin'
+                            value='admin'
+                            checked={authInfo.type === 'admin'}
+                            onChange={handleChange}
+                        />
+                        <label
+                            className={authInfo.type === 'admin' ? "selected" : null}
+                            htmlFor='admin'
+                        >Helper</label>
+                    </div>
+                    
+                </div>}
+
+                {role === 'login' && <>
+                    <button type= 'submit'>Sign In</button>
+                    <Link to= '/register'>Don't have an account?</Link>
+                </>}
+                {role === 'register' && <>
+                    <button type= 'submit'>Sign Up</button>
+                    <Link to='/login'>Already have an account?</Link>
+                </>}
             </form>
         </div>
     )

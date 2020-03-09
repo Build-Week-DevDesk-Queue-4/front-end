@@ -4,11 +4,59 @@
 .AuthForm form {
   display: flex;
   flex-direction: column;
-  width: 300px;
-  margin: auto;
+  width: 350px;
+  margin: 20px auto 0;
+  text-align: left;
+}
+.AuthForm .lambda-logo {
+  align-self: flex-start;
+}
+.AuthForm .text-input, .AuthForm button {
+  width: 100%;
+  height: 50px;
+}
+.AuthForm .text-input {
+  padding: 10px;
+  margin: 10px 0 20px;
+  border-color: black;
+  border-width: 1px;
+}
+.user-type-radio {
+  margin: 10px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.user-type-radio input {
+  display: none;
+}
+.user-type-radio label {
+  cursor: pointer;
+  color: #2E62A9;
+}
+.user-type-radio .selected {
+  text-decoration: underline;
+}
+.AuthForm button {
+  display: block;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  background: #2E62A9;
+  border: none;
+  margin: 10px 0;
+  cursor: pointer;
+}
+.AuthForm a {
+  text-align: right;
+  font-size: 1rem;
+  color: #2E62A9;
+  text-decoration: none;
+}
+.front-page {
+
 }
 .ticket {
-  color: grey;
   text-align: left;
   width: 60%;
   min-width: 375px;
@@ -18,8 +66,8 @@
   border: 1px solid #DADADA;
   border-radius: 8px;
 }
-.ticket.open {
-  color: black;
+.ticket.closed {
+  color: grey;
 }
 
 .ticket .top {
