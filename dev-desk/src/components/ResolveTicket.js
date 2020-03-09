@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import TicketContext from '../contexts/TicketContext';
 import axiosWithAuth from '../axiosWithAuth';
+import "./resolveTicket.css";
 
 export default ({ticket, setEditing}) => {
     //const {user} = useContext(UserContext);
@@ -24,23 +25,27 @@ export default ({ticket, setEditing}) => {
         }
     }
 
-    return <form onSubmit={handleSubmit}>
-        <label>Reply:</label>
+    return <form className="resolve-ticket">
         <textarea
             value={reply}
             onChange={ev => setReply(ev.target.value)}
+            placeholder="Reply..."
         />
-        <button
-            name="submit"
-            className="submit"
-        >
-            Submit
-        </button>
-        <button
-            name="cancel"
-            className="cancel"
-        >
-            Cancel
-        </button>
+        <div className="buttons">
+            <button
+                name="submit"
+                className="submit"
+                onClick={handleSubmit}
+            >
+                Submit
+            </button>
+            <button
+                name="cancel"
+                className="cancel"
+                onClick={handleSubmit}
+            >
+                Cancel
+            </button>
+        </div>
     </form>
 }
