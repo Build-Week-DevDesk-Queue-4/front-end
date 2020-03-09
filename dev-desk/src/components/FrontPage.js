@@ -20,7 +20,7 @@ const getSortRank = ticket => {
     return 0;
 }
 
-export default props => {
+export default () => {
     const [tickets, setTickets] = useState([]);
     const [fetching, setFetching] = useState(false);
     const [error, setError] = useState(false);
@@ -43,11 +43,11 @@ export default props => {
     useEffect(fetchTickets, []);
 
     return (
-        <div>
+        <div class='front-page'>
             <TicketContext.Provider value={{
                 tickets, setTickets: fetchTickets, fetching, setFetching, error, setError
             }}>
-                {user.username} is a {user.type}
+                {/* {user.username} is a {user.type} */}
                 <CreateTicket/>
                 <button onClick={() => setTicketChoice("all")}>All Tickets</button>
                 <button onClick={() => setTicketChoice("my")}>My Tickets</button>

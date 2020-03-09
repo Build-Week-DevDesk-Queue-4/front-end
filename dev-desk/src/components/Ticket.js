@@ -14,8 +14,8 @@ function Ticket({ ticket }) {
 
     const getClasses = () => {
         let cls = "ticket";
-        if (!solved) {
-            cls += " open";
+        if (solved) {
+            cls += " closed";
         }
         if (canClick) {
             cls += " clickable";
@@ -29,7 +29,6 @@ function Ticket({ ticket }) {
         if (user.type !== "admin" && user.id !== ticket.user_id) {
             return;
         }
-        console.log("deleting!");
         axiosWithAuth().delete(`https://daniels-dev-desk-backend.herokuapp.com/api/tickets/${ticket.id}`)
             .then(setTickets)
             .catch(err => console.log(err.response));
